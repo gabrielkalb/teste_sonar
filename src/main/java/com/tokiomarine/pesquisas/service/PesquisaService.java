@@ -13,6 +13,9 @@ import com.tokiomarine.pesquisas.dto.PesquisaPaginadaResultado;
 import com.tokiomarine.pesquisas.dto.ResponsePesquisaEmailsDestinatarios;
 import com.tokiomarine.pesquisas.repository.DisparoRepository;
 import com.tokiomarine.pesquisas.repository.PesquisaRepository;
+
+import lombok.extern.log4j.Log4j2;
+@Log4j2
 @Service
 public class PesquisaService{
     @Autowired
@@ -29,8 +32,12 @@ public class PesquisaService{
         return pesquisa;
     }
 
-    public ResponsePesquisaEmailsDestinatarios emailsDestinatarios(Long id) {
+    public ResponsePesquisaEmailsDestinatarios emailsDestinatarios(Integer id) {
         return new ResponsePesquisaEmailsDestinatarios(disparoRepository.findEmailsDestinatarios(id));
+    }
+    
+    public Pesquisa buscarPesquisa(Integer id) {
+        return pesquisaRepository.findById(id).orElseThrow(() -> new RuntimeException("Pesquisa não encontrada"));
     }
     
     public PesquisaPaginadaResultado listarPesquisasPaginadas(Integer pagina, Integer quantidadePagina){

@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tokiomarine.pesquisas.dao.StatusDisparo;
 import com.tokiomarine.pesquisas.service.StatusDisparoService;
 
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @RestController
 @RequestMapping("/status-disparo")
 public class StatusDisparoController {

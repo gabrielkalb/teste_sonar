@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tokiomarine.pesquisas.dao.Sistema;
 import com.tokiomarine.pesquisas.service.SistemaService;
 
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @RestController
 @RequestMapping("/sistema")
 public class SistemaController {

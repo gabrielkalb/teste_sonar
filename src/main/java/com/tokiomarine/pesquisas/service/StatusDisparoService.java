@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.tokiomarine.pesquisas.dao.StatusDisparo;
 import com.tokiomarine.pesquisas.repository.StatusDisparoRepository;
 
+import lombok.extern.log4j.Log4j2;
+@Log4j2
 @Service
 public class StatusDisparoService {
     @Autowired

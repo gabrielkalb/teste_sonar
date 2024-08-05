@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.tokiomarine.pesquisas.dao.Sistema;
 import com.tokiomarine.pesquisas.repository.SistemaRepository;
 
+import lombok.extern.log4j.Log4j2;
+@Log4j2
 @Service
 public class SistemaService {
     @Autowired

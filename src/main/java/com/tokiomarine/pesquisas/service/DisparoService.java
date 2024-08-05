@@ -11,6 +11,9 @@ import com.tokiomarine.pesquisas.dao.Disparo;
 import com.tokiomarine.pesquisas.dto.DisparoPaginadoResultado;
 import com.tokiomarine.pesquisas.repository.DisparoRepository;
 
+import lombok.extern.log4j.Log4j2;
+
+@Log4j2
 @Service
 public class DisparoService {
     @Autowired

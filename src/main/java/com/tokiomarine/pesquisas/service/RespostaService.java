@@ -12,6 +12,8 @@ import com.tokiomarine.pesquisas.dao.Usuario;
 import com.tokiomarine.pesquisas.repository.RespostaRepository;
 import com.tokiomarine.pesquisas.repository.UsuarioRepository;
 
+import lombok.extern.log4j.Log4j2;
+@Log4j2
 @Service
 public class RespostaService {
     @Autowired

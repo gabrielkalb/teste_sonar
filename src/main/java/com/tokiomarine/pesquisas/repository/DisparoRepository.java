@@ -13,7 +13,7 @@ public interface DisparoRepository extends JpaRepository<Disparo, Integer> {
     public List<Disparo> findAllByDeletadoEmIsNull();
 
     @Query("SELECT d.destinatario.email FROM Disparo d WHERE d.pesquisa.id = :pesquisaId")
-    public List<String> findEmailsDestinatarios(Long pesquisaId);
+    public List<String> findEmailsDestinatarios(Integer pesquisaId);
     
     public Page<Disparo> findAllByDeletadoEmIsNull(PageRequest pageRequest);
 

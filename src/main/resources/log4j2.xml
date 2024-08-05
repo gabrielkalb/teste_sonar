@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="60">
+	<Properties>
+        <Property name="graylog.host">udp:srvdocker02d.tokiomarine.com.br</Property>
+        <Property name="graylog.port">12201</Property>
+        <Property name="root.level">info</Property>
+        <Property name="nome.aplicacao">tmp-pesquisas</Property>
+        <Property name="base.package">com.tokiomarine.tmp</Property>
+        <Property name="class.name">HttpLoggingFilter</Property>
+    </Properties>
+	<Appenders>
+		<Console name="Console-Appender" target="SYSTEM_OUT">
+			<PatternLayout>
+				<pattern>
+					[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} idProcess[%X{idProcess}] - %msg%n
+				</pattern>
+			</PatternLayout>
+		</Console>
+		<RollingFile  name="App-Appender" fileName="log/${nome.aplicacao}.log"
+		              filePattern="log/${nome.aplicacao}-%d{MM-yyyy}.log.%i">
+			<PatternLayout>
+				<pattern>
+					[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} idProcess[%X{idProcess}] - %msg%n
+				</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="10 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="10" />
+		</RollingFile >
+		<RollingFile  name="Hibernate-Appender" fileName="log/${nome.aplicacao}_hibernate.log"
+					  filePattern="log/${nome.aplicacao}_hibernate-%d{MM-yyyy}.log.%i">
+			<PatternLayout>
+				<pattern>
+					[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} idProcess[%X{idProcess}] - %msg%n
+				</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="10 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="10" />
+		</RollingFile >	
+		<RollingFile  name="SpringBoot-Appender" fileName="log/${nome.aplicacao}_springboot.log"
+					  filePattern="log/${nome.aplicacao}_springboot-%d{MM-yyyy}.log.%i">
+			<PatternLayout>
+				<pattern>
+					[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} idProcess[%X{idProcess}] - %msg%n
+				</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="10 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="10" />
+		</RollingFile >	
+		<Gelf name="Gelf" host="${sys:graylog.host}" port="${sys:graylog.port}" version="1.1"
+            extractStackTrace="true" filterStackTrace="false" originHost="%host{fqdn}">
+            <Field name="timestamp" pattern="%d{dd MMM yyyy HH:mm:ss,SSS}" />
+            <Field name="level" pattern="%level" />
+            <Field name="simpleClassName" pattern="%C{1}" />
+            <Field name="className" pattern="%C" />
+            <Field name="server" pattern="%host" />
+            <Field name="application" pattern="${nome.aplicacao}" />
+            <Field name="tag" pattern="gestao-apolices" />
+            <Field name="area" pattern="emissao" />
+            <Field name="severity" pattern="%-5level" />			
+            <Field name="idprocess" pattern="%X{idProcess}" />
+            <Field name="requestedUri" pattern="%X{requestedUri}" />
+			<Field name="requestedMethod" pattern="%X{requestedMethod}" />
+            <Field name="tipoLog" pattern="app" />
+            <Field name="DESTINO" pattern="%X{DESTINO}" />
+			<Field name="ID_PACOTE" pattern="%X{ID_PACOTE}" />
+			<Field name="NR_MSG" pattern="%X{NR_MSG}" />
+			<Field name="id_proposta" pattern="%X{id_proposta}" />
+			<Field name="cd_ppota_caixa" pattern="%X{cd_ppota_caixa}" />
+			<Field name="cd_cotac" pattern="%X{cd_cotac}" />
+			<Field name="cd_endosso" pattern="%X{cd_endosso}" />
+			<Field name="cd_negocio" pattern="%X{cd_negocio}" />
+			<Field name="codApolice" pattern="%X{codApolice}" />
+			<Field name="cd_ramo" pattern="%X{cd_ramo}" />
+			<Field name="cd_sistema_origem" pattern="%X{cd_sistema_origem}" />
+			<Field name="cod_ramo" pattern="%X{cod_ramo}" />
+			<Field name="codProd" pattern="%X{codProd}" />
+			<Field name="ID_FILA" pattern="%X{ID}" />
+			<Field name="idprocess" pattern="%X{idprocess}" />
+			<Field name="idProcess" pattern="%X{idProcess}" />
+			<Field name="idcliente" pattern="%X{idcliente}" />
+			<Field name="cd_cliente" pattern="%X{cd_cliente}" />
+			<Field name="idSolic" pattern="%X{idSolic}" />
+			<Field name="idCtpj" pattern="%X{idCtpj}" />
+			<Field name="num_proposta" pattern="%X{num_proposta}" />
+			<Field name="numProposta" pattern="%X{numProposta}" />
+			<Field name="propostaCtpj" pattern="%X{propostaCtpj}" />
+			<Field name="url" pattern="%X{url}" />
+			<Field name="tipoDocumento" pattern="%X{tipoDocumento}" />
+			<Field name="tp_operacao" pattern="%X{tp_operacao}" />
+			<Field name="messageId" pattern="%X{messageId}" />
+			<Field name="correlationId" pattern="%X{correlationId}" />
+			<Field name="receivedExchange" pattern="%X{receivedExchange}" />
+			<Field name="receivedRoutingKey" pattern="%X{receivedRoutingKey}" />
+			<Field name="numCertificado" pattern="%X{numCertificado}" />
+			<Field name="ID_ERRO" pattern="%X{ID_ERRO}" />
+        </Gelf>
+        <Gelf name="Gelf-Hibernate" host="${sys:graylog.host}" port="${sys:graylog.port}" version="1.1"
+            extractStackTrace="true" filterStackTrace="false" originHost="%host{fqdn}">
+            <Field name="timestamp" pattern="%d{dd MMM yyyy HH:mm:ss,SSS}" />
+            <Field name="level" pattern="%level" />
+            <Field name="simpleClassName" pattern="%C{1}" />
+            <Field name="className" pattern="%C" />
+            <Field name="server" pattern="%host" />
+            <Field name="application" pattern="${nome.aplicacao}" />
+            <Field name="tag" pattern="gestao-apolices" />
+            <Field name="area" pattern="emissao" />
+            <Field name="severity" pattern="%-5level" />			
+            <Field name="idprocess" pattern="%X{idProcess}" />
+            <Field name="requestedUri" pattern="%X{requestedUri}" />
+			<Field name="requestedMethod" pattern="%X{requestedMethod}" />
+            <Field name="tipoLog" pattern="hibernate" />
+        </Gelf>
+        <Gelf name="Gelf-Console" host="${sys:graylog.host}" port="${sys:graylog.port}" version="1.1"
+			  extractStackTrace="true" filterStackTrace="false" originHost="%host{fqdn}">
+			<Field name="timestamp" pattern="%d{dd MMM yyyy HH:mm:ss,SSS}" />
+			<Field name="level" pattern="%level" />
+			<Field name="simpleClassName" pattern="%C{1}" />
+			<Field name="className" pattern="%C" />
+			<Field name="server" pattern="%host" />
+			<Field name="application" pattern="${nome.aplicacao}" />
+			<Field name="tag" pattern="gestao-apolices" />
+			<Field name="area" pattern="emissao" />
+			<Field name="severity" pattern="%-5level" />
+			<Field name="idprocess" pattern="%X{idProcess}" />
+			<Field name="requestedUri" pattern="%X{requestedUri}" />
+			<Field name="requestedMethod" pattern="%X{requestedMethod}" />
+			<Field name="tipoLog" pattern="console" />
+		</Gelf>
+	</Appenders>
+	<Loggers>
+		<Logger name="org.hibernate" level="info">
+			<AppenderRef ref="Hibernate-Appender" />
+			<AppenderRef ref="Gelf-Hibernate" />
+		</Logger>
+		<Logger name="${sys:base.package}" level="info" additivity="false">
+			<AppenderRef ref="App-Appender" />
+			<AppenderRef ref="Gelf" />
+		</Logger>
+		<Root level="${sys:root.level}">
+			<AppenderRef ref="Console-Appender" />
+			<AppenderRef ref="Gelf-Console" />
+		</Root>
+	</Loggers>
+</Configuration>

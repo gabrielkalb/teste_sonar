@@ -30,7 +30,7 @@ public class Pesquisa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private int id;
+    private Integer id;
 
     @Column(name = "SLUG")
     private String slug;
@@ -42,19 +42,19 @@ public class Pesquisa {
     private boolean reenvio;
 
     @Column(name = "QUANTIDADE_REENVIO")
-    private int quantidadeReenvio;
+    private Integer quantidadeReenvio;
 
     @Column(name = "PERIODICIDADE_REENVIO")
-    private int periodicidadeReenvio;
+    private Integer periodicidadeReenvio;
 
     @Column(name = "COMENTARIO_RANGE_NOTA")
     private boolean comentárioRangeNota;
     
     @Column(name = "RANGE_INICIAL")
-    private int rangeInicial;
+    private Integer rangeInicial;
 
     @Column(name = "RANGE_FINAL")
-    private int rangeFinal;
+    private Integer rangeFinal;
 
     @Column(name = "EMAIL_TI")
     private String emailTi;

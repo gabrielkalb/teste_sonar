@@ -15,15 +15,20 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tokiomarine.pesquisas.dao.AvaliacaoDeJornada;
 import com.tokiomarine.pesquisas.service.AvaliacaoJornadaService;
 
+import lombok.extern.log4j.Log4j2;
+
+@Log4j2
 @RestController
 @RequestMapping("/avaliacao-jornada")
 public class AvaliacaoJornadaController {
+	
     @Autowired
     private AvaliacaoJornadaService avaliacaojornadaService;
 
 
     @GetMapping("/listar-avaliacao-jornadas")
     public ResponseEntity<List<AvaliacaoDeJornada>> listarAvaliacaoJornadas() {
+    	log.info("Inicio - Class {} - Method {}", this.getClass().getSimpleName(), new Throwable().getStackTrace()[0].getMethodName());
         return ResponseEntity.ok(this.avaliacaojornadaService.listarAvaliacaoJornadas());
     }
 

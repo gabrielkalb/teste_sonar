@@ -15,7 +15,9 @@ import com.tokiomarine.pesquisas.dto.DisparoPaginadoEntrada;
 import com.tokiomarine.pesquisas.dto.DisparoPaginadoResultado;
 import com.tokiomarine.pesquisas.service.DisparoService;
 
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @RestController
 @RequestMapping("/disparo")
 public class DisparoController {
